@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-    http_basic_authenticate_with name: "dhh", password: 
-    "secret", only: :destroy
+    before_action :require_login
     
     def create
         @world = World.find(params[:world_id])

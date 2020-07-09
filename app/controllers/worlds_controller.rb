@@ -1,14 +1,13 @@
 class WorldsController < ApplicationController
-    http_basic_authenticate_with name: "dhh", password: 
-    "secret", except: [:index, :show]
+    before_action :require_login
+    skip_before_action :require_login, only: [:index]
     
     def index
         @worlds = World.all
     end
    
     def show
-        return head(:forbidden) unless session.include? :user_id
-    @world = World.find(params[:id])
+      @world = World.find(params[:id])
    end
 
     def new
