@@ -8,13 +8,17 @@ class WorldsController < ApplicationController
    end
 
     def new
+        @world = World.new
     end
 
     def create
         @world = World.new(world_params)
  
-        @world.save
+        if @world.save
         redirect_to @world
+        else
+            render 'new'
+        end
     end
 
     private
