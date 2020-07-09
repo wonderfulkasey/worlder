@@ -35,6 +35,13 @@ class WorldsController < ApplicationController
         end
     end
 
+    def destroy
+        @world = World.find(params[:id])
+        @world.destroy
+       
+        redirect_to worlds_path
+      end
+
     private
     def world_params
         params.require(:world).permit(:title, :text)
