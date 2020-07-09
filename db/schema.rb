@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_025034) do
+ActiveRecord::Schema.define(version: 2020_07_09_033639) do
+
+  create_table "characters", force: :cascade do |t|
+    t.string "character"
+    t.text "body"
+    t.integer "world_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["world_id"], name: "index_characters_on_world_id"
+  end
 
   create_table "worlds", force: :cascade do |t|
     t.string "title"
@@ -19,4 +28,5 @@ ActiveRecord::Schema.define(version: 2020_07_09_025034) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "characters", "worlds"
 end
