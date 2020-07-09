@@ -1,7 +1,7 @@
-class CreateCharacters < ActiveRecord::Migration[6.0]
+class CreateComments < ActiveRecord::Migration[6.0]
   def change
-    create_table :characters do |t|
-      t.string :character
+    create_table :comments do |t|
+      t.string :commenter
       t.text :body
       t.references :world, null: false, foreign_key: true
 

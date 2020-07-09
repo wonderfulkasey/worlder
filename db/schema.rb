@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_033639) do
+ActiveRecord::Schema.define(version: 2020_07_09_043515) do
 
   create_table "characters", force: :cascade do |t|
     t.string "character"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_07_09_033639) do
     t.index ["world_id"], name: "index_characters_on_world_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body"
+    t.integer "world_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["world_id"], name: "index_comments_on_world_id"
+  end
+
   create_table "worlds", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -29,4 +38,5 @@ ActiveRecord::Schema.define(version: 2020_07_09_033639) do
   end
 
   add_foreign_key "characters", "worlds"
+  add_foreign_key "comments", "worlds"
 end
