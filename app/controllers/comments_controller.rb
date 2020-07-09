@@ -4,6 +4,14 @@ class CommentsController < ApplicationController
         @comment = @world.comments.create(comment_params)
         redirect_to world_path(@world)
       end
+
+      def destroy
+        @world = World.find(params[:world_id])
+        @comment = @world.comments.find(params[:id])
+        @comment.destroy
+        redirect_to world_path(@world)
+      end
+     
      
       private
         def comment_params
