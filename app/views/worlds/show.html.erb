@@ -8,14 +8,34 @@
   <%= @world.text %>
 </p>
 
-<h1>characters</h1>
-<%= render @world.characters %>
+<h2>Comments</h2>
+<% @world.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+ 
 
- <h2>add a character</h2>
- <%= render 'characters/form' %>
-
-
-
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @world, @world.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_world_path(@world) %> |
 <%= link_to 'Back', worlds_path %>
