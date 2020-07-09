@@ -11,6 +11,10 @@ class WorldsController < ApplicationController
         @world = World.new
     end
 
+    def edit
+        @world = World.find(params[:id])
+    end
+
     def create
         @world = World.new(world_params)
  
@@ -18,6 +22,16 @@ class WorldsController < ApplicationController
         redirect_to @world
         else
             render 'new'
+        end
+    end
+
+    def update
+        @world = World.find(params[:id])
+       
+        if @world.update(world_params)
+          redirect_to @world
+        else
+          render 'edit'
         end
     end
 
