@@ -7,6 +7,7 @@ class WorldsController < ApplicationController
     end
    
     def show
+        return head(:forbidden) unless session.include? :user_id
     @world = World.find(params[:id])
    end
 
