@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'user/index'
   get 'welcome/index'
 
   resources :worlds do
