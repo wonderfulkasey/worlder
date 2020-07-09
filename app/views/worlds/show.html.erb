@@ -8,5 +8,33 @@
   <%= @world.text %>
 </p>
 
+<h2>Character</h2>
+<% @world.characters.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Character:</strong>
+    <%= character.body %>
+  </p>
+<% end %>
+
+<h2>Add a character:</h2>
+<%= form_with(model: [ @world, @world.characters.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :character %><br>
+    <%= form.text_field :character %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_world_path(@world) %> |
 <%= link_to 'Back', worlds_path %>
