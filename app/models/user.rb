@@ -1,18 +1,19 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
-    def password=(new_password)
-        self.password_digest = dumb_hash(new_password)
-      end
-     
-      def authenticate(password)
-        return nil unless dumb_hash(password) == password_digest
-        self
-      end
-     
-      private
-     
-      def dumb_hash(input)
-        input.bytes.reduce(:+)
-      end
-    end
+    has_many :worlds
+    has_many :characters, through: :worlds
 
+    validates :username, presence: true, length: { maximum: 15 }, uniqueness: true
+
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    validates :email_address, presence: true, length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+
+    has_secure_password
+    validates :name, presence: true
+    validates :password, presence: true, length: { minimum: 6 }
+    validates :password_confirmation, presence: true, length: { minimum: 6 }
+
+
+
+
+end
