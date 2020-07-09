@@ -1,0 +1,19 @@
+
+<h1>Listing Worlds</h1>
+ 
+ <%= link_to 'New world', new_world_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th></th>
+  </tr>
+ 
+  <% @worlds.each do |world| %>
+    <tr>
+      <td><%= world.title %></td>
+      <td><%= world.text %></td>
+      <td><%= link_to 'Show', world_path(world) %></td>
+    </tr>
+  <% end %>
+</table>
