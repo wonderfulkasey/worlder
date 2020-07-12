@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :models
   #devise_for :users
   #devise_for :users
   devise_for :users, :controllers => { omniauth_callbacks: "callbacks" }
