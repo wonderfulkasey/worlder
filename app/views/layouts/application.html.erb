@@ -9,9 +9,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <body>
+
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-      <a class="nav-link" href="/ideas">Ideas</a>
+      <a class="nav-link" href="/worlds">World Index</a>
     </li>
     ...
   </ul>
@@ -28,6 +30,8 @@
 </p>
 
   
+
+
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -35,7 +39,7 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
-  <body>
+  
     <%= yield %>
   </body>
 </html>
