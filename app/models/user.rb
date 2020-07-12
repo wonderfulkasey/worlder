@@ -5,13 +5,12 @@ class User < ApplicationRecord
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable, 
-           :omniauthable, :omniauth_providers: [:facebook]
+           :omniauthable, omniauth_providers: [:facebook]
   
            has_many :worlds
     has_many :comments, through: :worlds
 
     validates :name, presence: true
-    has_secure_password
     validates :email, uniqueness: true
   
     def self.new_with_session(params, session)
