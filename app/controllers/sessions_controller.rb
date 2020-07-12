@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
     layout 'login'
   
-    def new
-    end
-  
     def create # receives data submitted in login form, authenticates and logs in a valid user
+      user = User.find_by(name: params[:name])
       if @user = User.find_or_create_from_auth_hash(auth_hash)
         session[:user_id] = @user.id
         redirect_to root_path  

@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :require_login, only: [:show, :edit, :update, :destroy]
+
   def show
     @user = User.find_by(id: params[:id])
         @worlds = @user.worlds
